@@ -28,7 +28,7 @@
 <!-- restaurant list -->
 <div class="container">
   <div class="row">
-    <div class="col-12  mx-auto">
+    <div class="col-12 mx-auto">
       <div class="card-columns">
 
         {{#each restaurants}}
@@ -52,9 +52,13 @@
 
 
           <div class="card-footer">
-            <div class="row justify-content-center">
-              <a href="./restaurants/{{ this._id }}/edit" class="mr-3">Edit</a>
-              <a href="./restaurants/{{ this._id }}">Detail</a>
+            <div class="row justify-content-end">
+              <a href="./restaurants/{{ this._id }}/edit" class="mr-3 mt-1">Edit</a>
+              <a href="./restaurants/{{ this._id }}" class="mr-3 mt-1">Detail</a>
+              
+              <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+              <button type="submit" class="btn btn-danger btn-sm mr-3 ">Delete</button>
+              </form>
             </div>
           </div>
         </div>
