@@ -24,7 +24,8 @@ db.once('open', () => {
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static('public'))
+// app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   Restaurantmodel.find()
@@ -54,6 +55,16 @@ app.post('/restaurants', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
+
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurantmodel.findById(id)
+    .lean()
+    .then((restaurant) => res.render('detail', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+
 
 
 app.listen(port, () => {
