@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose') // 載入 mongoose
 const Restaurantmodel = require('./models/restaurant')  // 載入 Restaurant model
+const restaurantList = require('./models/seeds/restaurant.json')
 
 const app = express()
 const port = 3000
@@ -32,6 +33,20 @@ app.get('/', (req, res) => {
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.log(error))
+})
+
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword
+  const keyword_sm = keyword.toLowerCase()
+  const restaurants = restaurantList.results.filter(restaurant => {
+    if (keyword.length > 0) {
+      return restaurant.name.toLowerCase().includes(keyword_sm) ||
+        restaurant.category.toLowerCase().includes(keyword_sm)
+    } else {
+      return res.redirect('/')
+    }
+  })
+  res.render('index', { restaurants: restaurants, keyword: keyword })
 })
 
 app.get('/restaurants/new', (req, res) => {
