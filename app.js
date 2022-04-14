@@ -64,8 +64,43 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurantmodel.findById(id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
 
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const name = req.body.nameInput
+  const nameEn = req.body.nameEnInput
+  const category = req.body.categoryInput
+  const image = req.body.imageInput
+  const location = req.body.locationInput
+  const phone = req.body.phoneInput
+  const googleMap = req.body.googleMapInput
+  const rating = req.body.ratingInput
+  const description = req.body.descriptionInput
 
+  return Restaurantmodel.findById(id)
+    .lean()
+    .then((restaurant) => {
+      restaurant.name = name
+      restaurant.name_en = nameEn
+      restaurant.category = category
+      restaurant.image = image
+      restaurant.location = location
+      restaurant.phone = phone
+      restaurant.google_map = googleMap
+      restaurant.rating = rating
+      restaurant.description = description
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+})
 
 app.listen(port, () => {
   console.log(`The express app is running on http://localhost:${port}`)
