@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-7 mx-auto">
+      <h4 class="title mt-4">新增餐廳</h4>
+      <hr>
+      <form action="/restaurants" method="POST">
+        <div class="row mb-2 g-2 align-items-center">
+          <label for="nameInput" class="col-md-4 col-form-label" required>餐廳名稱</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" name="nameInput" id="nameInput">
+          </div>
+        </div>
+        {{!-- aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> --}}
+        {{!-- <small class="text-muted form-text">These characters will not appear in the password</small> --}}
+
+        <div class="row mb-2 g-2 align-items-center">
+          <label for="nameEnInput" class="col-md-4 col-form-label">餐廳英文名稱</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" name="nameEnInput" id="nameEnInput" required>
+          </div>
+        </div>
+
+        <div class="row mb-2 g-2 align-items-center">
+          <label for="categoryInput" class="col-md-4 col-form-label">類別</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" name="categoryInput" id="categoryInput" required>
+          </div>
+        </div>
+
+        <div class="row mb-2 g-2 align-items-center">
+          <label for="imageInput" class="col-md-4 col-form-label">圖片網址</label>
+          <div class="col-md-8">
+            <input type="url" class="form-control" name="imageInput" id="imageInput" required>
+          </div>
+        </div>
+
+        <div class="row mb-2 g-2 align-items-center">
+          <label for="locationInput" class="col-md-4 col-form-label">地址</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" name="locationInput" id="locationInput" required>
+          </div>
+        </div>
+
+        <div class="row mb-2 g-2 align-items-center">
+          <label for="phoneInput" class="col-md-4 col-form-label">電話</label>
+          <div class="col-md-8">
+            <input type="tel" class="form-control" name="phoneInput" id="phoneInput" required>
+          </div>
+        </div>
+
+        <div class="row mb-2 g-2 align-items-center">
+          <label for="googleMapInput" class="col-md-4 col-form-label">Google map網址</label>
+          <div class="col-md-8">
+            <input type="url" class="form-control" name="googleMapInput" id="googleMapInput" required>
+          </div>
+        </div>
+
+        <div class="row mb-2 g-2 align-items-center">
+          <label for="ratingInput" class="col-md-4 col-form-label">餐廳評分</label>
+          <div class="col-md-8">
+            <input type="number" min="0.0" max="10.0" step="0.1" class="form-control" name="ratingInput" id="ratingInput" required>
+          </div>
+        </div>
+
+        <div class="row mb-2 g-2 align-items-center">
+          <label for="descriptionInput" class="col-md-4 col-form-label">餐廳介紹</label>
+          <div class="col-md-8">
+            <textarea rows="4" class="form-control" name="descriptionInput" id="descriptionInput" required></textarea>
+          </div>
+        </div>
+
+        <div class="row justify-content-center my-4">
+          <button type="submit" class="btn btn-info">確認新增</button>
+        </div>
+    </div>
+    </form>
+  </div>
+</div>
