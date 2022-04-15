@@ -3,9 +3,6 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
-const Restaurantmodel = require('./models/restaurant')  // 載入 Restaurant model
-const restaurantList = require('./models/seeds/restaurant.json')
-
 const routes = require('./routes')
 require('./config/mongoose')
 

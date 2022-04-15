@@ -1,29 +1,35 @@
 <!-- search bar -->
 <div class="container search-bar">
-  <div class="search-bar-outer mt-4">
-    <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
-            value="" aria-describedby="search-button">
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+  <div class="row align-items-center" style="flex-wrap: wrap">
+    <div class="search-bar-outer my-4 col-md-10">
+      <div class="search-bar-inner">
+        <form action="/search">
+          <h4 class="mb-2">尋找餐廳：</h4>
+          <div class="input-group">
+            <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
+              value="" aria-describedby="search-button">
+            <div class="input-group-append">
+              <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-2 mb-4">
+      <h6>排序方式：</h6>
+      <select name="sort" style="width: 100%;">
+        <option value="" selected>預設</option>
+        <option value="A->Z">A->Z</option>
+        <option value="Z->A">Z->A</option>
+        <option value="category">類別</option>
+        <option value="location">地區</option>
+      </select>
+
     </div>
   </div>
 </div>
 
-<!-- add restaurant -->
-<div class="container">
-  <div class="row justify-content-end">
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
-      <a href="./restaurants/new" class="btn btn-info btn-sm" role="button">新增餐廳</a>
-    </div>
-  </div>
-</div>
 
 <!-- restaurant list -->
 <div class="container">
@@ -55,9 +61,9 @@
             <div class="row justify-content-end">
               <a href="./restaurants/{{ this._id }}/edit" class="mr-3 mt-1">Edit</a>
               <a href="./restaurants/{{ this._id }}" class="mr-3 mt-1">Detail</a>
-              
+
               <form action="./restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-              <button type="submit" class="btn btn-danger btn-sm mr-3 ">Delete</button>
+                <button type="submit" class="btn btn-danger btn-sm mr-3 ">Delete</button>
               </form>
             </div>
           </div>
