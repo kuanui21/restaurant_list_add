@@ -2,6 +2,8 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose') // 載入 mongoose
+const methodOverride = require('method-override')
+
 const Restaurantmodel = require('./models/restaurant')  // 載入 Restaurant model
 const restaurantList = require('./models/seeds/restaurant.json')
 
@@ -26,7 +28,9 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 app.use(express.static('public'))
-// app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(methodOverride('_method'))
 
 app.get('/', (req, res) => {
   Restaurantmodel.find()
@@ -87,7 +91,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const name = req.body.nameInput
   const nameEn = req.body.nameEnInput
@@ -100,7 +104,6 @@ app.post('/restaurants/:id/edit', (req, res) => {
   const description = req.body.descriptionInput
 
   return Restaurantmodel.findById(id)
-    .lean()
     .then((restaurant) => {
       restaurant.name = name
       restaurant.name_en = nameEn
@@ -117,7 +120,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurantmodel.findById(id)
     .then(restaurant => restaurant.remove())
