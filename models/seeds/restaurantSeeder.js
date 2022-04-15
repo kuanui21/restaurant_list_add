@@ -1,19 +1,10 @@
-const mongoose = require('mongoose')
 const Restaurantmodel = require('../restaurant')  // 載入 Restaurant model
 const restaurantList = require('./restaurant.json')  // 載入種子資料的路徑
+const db = require('../../config/mongoose')
 
 const restaurant_list = restaurantList.results
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
-
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('mongodb error!')
-})
 db.once('open', () => {
-  console.log('mongodb connected!')
-
   restaurant_list.forEach(restaurant => {
     Restaurantmodel.create({
       name: restaurant.name,
@@ -27,6 +18,6 @@ db.once('open', () => {
       description: restaurant.description
     })
   })
-  
+
   console.log('done')
 })
