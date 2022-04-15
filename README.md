@@ -1,6 +1,6 @@
 # 餐廳清單
 
-![Index page about Restaurant List](./public/image/restaurant_list.png)
+![Index page about Restaurant List](./public/image/restaurant_list2.png)
 
 ## 介紹
 此專案提供餐廳的資訊，包含餐廳地址、評分、描述等
@@ -13,6 +13,7 @@
 - 使用者可以刪除一家餐廳
 - 使用者可以用餐廳名稱或餐廳類別搜尋餐廳
 - 使用者可以點選餐廳地址的導航圖示，到 Google 地圖
+- 使用者可以用下拉選單設定餐廳排序(尚未完成)
 
 
 # 使用方式
@@ -44,5 +45,6 @@ ctrl + c
 - Express-Handlebars 3.0.0
 - mongoose 5.9.7
 - body-parser 1.20.0
+- method-override 3.0.0
 - Bootstrap 4.3.1
 - Font-awesome 5.8.1
