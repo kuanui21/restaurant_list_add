@@ -4,19 +4,6 @@ const router = express.Router()
 const Restaurantmodel = require('../../models/restaurant')
 const restaurantList = require('../../models/seeds/restaurant.json')
 
-router.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  const keyword_sm = keyword.toLowerCase()
-  const restaurants = restaurantList.results.filter(restaurant => {
-    if (keyword.length > 0) {
-      return restaurant.name.toLowerCase().includes(keyword_sm) ||
-        restaurant.category.toLowerCase().includes(keyword_sm)
-    } else {
-      return res.redirect('/')
-    }
-  })
-  res.render('index', { restaurants: restaurants, keyword: keyword })
-})
 
 router.get('/new', (req, res) => {
   return res.render('new')
